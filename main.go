@@ -5,8 +5,7 @@ import (
 	"os"
 )
 
-func main() { 
-	
+func main() {
 	s := os.Args[1]
 	slices := []int{0}
 	pointer := 0
@@ -28,24 +27,13 @@ func main() {
 			in = append(in, i)
 		case ']':
 			if slices[pointer] == 0 {
-				in = delete(in)
-				continue
+				in = in[:len(in)-1]
+			} else {
+				i = in[len(in)-1]
 			}
-			i = in[len(in)-1]
 
 		case '.':
 			fmt.Print(string(slices[pointer]))
 		}
 	}
-}
-
-func delete(a []int) []int {
-	if len(a) <= 1 {
-		return nil
-	}
-	c := []int{}
-	for i := 0; i < len(a)-1; i++ {
-		c = append(c, a[i])
-	}
-	return c
 }
